@@ -10,7 +10,11 @@
     <body>
         <?php foreach ($posts as $post) : ?>
         <article>
-            <?php echo $post; ?>
+            <a href="/posts/<?php echo $post->html?>"><h2><?php echo $post->title; ?></h2></a>
+            <h3><?php echo $post->date; ?></h3>
+            <div>
+                <p><?php echo $post->excerpt;?></p>
+            </div>
         </article>
         <?php endforeach; ?>
     </body>

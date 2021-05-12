@@ -9,7 +9,11 @@
     </head>
     <body>
         <article>
-            <?php echo $post ?>
+            <h1><?php echo $post->title ?></h1>
+            <div>
+                <p><?php echo $post->body ?></p>
+            </div>
+            
         </article>
         <a href="/">Go Back</a>
     </body>

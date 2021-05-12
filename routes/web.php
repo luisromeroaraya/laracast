@@ -2,6 +2,9 @@
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $posts = Post::all();
-    return view('posts', ["posts" => $posts]);
+    $posts = Post::all(); //Gets all the posts
+    return view('posts', ["posts" => $posts]); //Sends the $posts to the rendered page
 });
 
 Route::get('posts/{n}', function ($n) { //Find a post by its name $n and pass it to a view called "post"
     $post = Post::find($n); //We created a Class named Post with the method find($n) in it (check folder app/models)
-    return view('post', ['post' => $post]); //Sends variable $post to rendered page
+    return view('post', ['post' => $post]); //Sends the $post to rendered page
 })->where("n", "[A-z_\-]+"); //You can also use whereAlpha, whereAlphaNumeric, whereNumber
