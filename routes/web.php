@@ -23,6 +23,6 @@ Route::get('/', function () {
 });
 
 Route::get('posts/{n}', function ($n) { //Find a post by its name $n and pass it to a view called "post"
-    $post = Post::find($n); //We created a Class named Post with the method find($n) in it (check folder app/models)
+    $post = Post::findOrFail($n); //We created a Class named Post with the method find($n) in it (check folder app/models)
     return view('post', ['post' => $post]); //Sends the $post to rendered page
-})->where("n", "[A-z_\-]+"); //You can also use whereAlpha, whereAlphaNumeric, whereNumber
+});//->where("n", "[A-z_\-]+"); //You can also use whereAlpha, whereAlphaNumeric, whereNumber

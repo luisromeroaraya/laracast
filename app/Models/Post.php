@@ -21,7 +21,6 @@ class Post {
     }
 
     public static function all() {
-        $files = File::files(resource_path("posts")); // We get an array with all the files from the folder "posts"
         // We need to loop into this array to create a new array with our Post objects:
         // $posts = [];
         // foreach ($files as $file) {
@@ -38,18 +37,27 @@ class Post {
         // return $posts;
         //
         // But in Laravel we can also use Collections:
-        return collect($files)->map(function($file) {
-            $document = YamlFrontMatter::parseFile($file);
-            // return cache()->rememberForever("posts.all", function() {
 
-            // });
-            return new Post($document->title, $document->excerpt, $document->date, $document->body(), $document->html);
-        })->sortByDesc("date");
+        return cache()->rememberForever("posts.all", function() { // We save the collection in the cache
+            $files = File::files(resource_path("posts")); // We get an array with all the files from the folder "posts"
+            return collect($files)->map(function($file) {
+                $document = YamlFrontMatter::parseFile($file);
+                return new Post($document->title, $document->excerpt, $document->date, $document->body(), $document->html);
+            })->sortByDesc("date");
+        });
     }
 
     public static function find($html) {
-        $posts = static::all();
-        return $posts->firstWhere("html", $html);
+        $post = static::all()->firstWhere("html", $html);
+        return $post;
+    }
+
+    public static function findOrFail($html) {
+        $post = static::find($html);
+        if (!$post) {
+            throw new ModelNotFoundException();
+        }
+        return $post;
     }
 }
 
