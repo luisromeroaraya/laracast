@@ -9,9 +9,9 @@
     </head>
     <body>
         <article>
-            <h1><?php echo $post->title ?></h1>
+            <h1>{{$post->title}}</h1>
             <div>
-                <p><?php echo $post->body ?></p>
+                {!!$post->body!!} <!-- !! forces Blade to render it as HTML -->
             </div>
             
         </article>

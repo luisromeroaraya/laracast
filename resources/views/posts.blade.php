@@ -8,14 +8,14 @@
         <link rel="stylesheet" href="/app.css">
     </head>
     <body>
-        <?php foreach ($posts as $post) : ?>
+        @foreach ($posts as $post)
         <article>
-            <a href="/posts/<?php echo $post->html?>"><h2><?php echo $post->title; ?></h2></a>
-            <h3><?php echo $post->date; ?></h3>
+            <a href="/posts/{{$post->html}}"><h2>{{$post->title}}</h2></a>
+            <h3>{{$post->date}}</h3>
             <div>
-                <p><?php echo $post->excerpt;?></p>
+                <p>{{$post->excerpt}}</p>
             </div>
         </article>
-        <?php endforeach; ?>
+        @endforeach
     </body>
 </html>

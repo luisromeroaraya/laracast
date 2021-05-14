@@ -40,8 +40,11 @@ class Post {
         // But in Laravel we can also use Collections:
         return collect($files)->map(function($file) {
             $document = YamlFrontMatter::parseFile($file);
-            return new Post($document->title, $document->excerpt, $document->date, $document->body(), $document->html);    
-        });
+            // return cache()->rememberForever("posts.all", function() {
+
+            // });
+            return new Post($document->title, $document->excerpt, $document->date, $document->body(), $document->html);
+        })->sortByDesc("date");
     }
 
     public static function find($html) {
