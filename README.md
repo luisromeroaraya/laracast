@@ -1,6 +1,7 @@
 # Laracast - Laravel 8 [Tutorial](https://laracasts.com/series/laravel-8-from-scratch)
 
-I'll follow this course to create a Laravel blog system
+I'll follow this course to create a Laravel blog system.
+HTML/CSS files are [here](https://github.com/laracasts/Laravel-From-Scratch-HTML-CSS).
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
