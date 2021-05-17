@@ -13,6 +13,7 @@ class Post extends Model
     // protected $guarded = ["id"]; //You can assign everything except the id
     protected $fillable = ["title", "excerpt", "body", "slug", "category_id"];  //You can only assign this fields
 
+    protected $with = ["category", "user"]; // This sends extra data to the response of the query to avoid multiple queries to the database. If you don't want this extra info just add for example Post::without('user')-> at the beginning of the query
     //This will create an Eloquent relationship to create $post->category
     public function category() {
         return $this->belongsTo(Category::class);

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\File;
 */
 
 Route::get('/', function () {
-    $posts = Post::latest()->with("category", "user")->get(); //Gets all the posts with a category assigned and sorts them according to their timestamp
+    $posts = Post::latest()->get(); //Gets all the posts with a category assigned and sorts them according to their timestamp
     return view('posts', ["posts" => $posts]); //Sends the $posts to the rendered page
 });
 
