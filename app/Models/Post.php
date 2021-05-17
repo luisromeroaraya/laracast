@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory; // means that there is a Factory method to create users randomly
 
     //This following options protect you from MASS ASIGNMENT VULNERABILITIES
     // protected $guarded = ["id"]; //You can assign everything except the id

@@ -16,52 +16,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {   
-        User::truncate();
-        Category::truncate();
-        Post::truncate();
+        // User::truncate();
+        // Category::truncate();
+        // Post::truncate();
 
-        $user = User::factory()->create();
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+        $user3 = User::factory()->create();
 
-        $personal = Category::create([
-            "name"=>"Personal",
-            "slug"=>"personal"
+        $category1 = Category::factory()->create();
+        $category2 = Category::factory()->create();
+        $category3 = Category::factory()->create();
+
+        Post::factory(5)->create([
+            "user_id" => $user1->id,
+            "category_id" => $category1->id
+        ]);
+           
+        Post::factory(5)->create([
+            "user_id" => $user2->id,
+            "category_id" => $category2->id
         ]);
 
-        $work = Category::create([
-            "name"=>"Work",
-            "slug"=>"work"
-        ]);
-
-        $hobbies = Category::create([
-            "name"=>"Hobbies",
-            "slug"=>"hobbies"
-        ]);
-
-        Post::create([
-            "user_id"=>$user->id,
-            "category_id"=>$personal->id,
-            "title"=>"My Personal Post",
-            "slug"=>"my-personal-post",
-            "excerpt"=>"Lorem ipsum dolor sit amet",
-            "body"=>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel voluptatibus commodi nisi labore, soluta neque. Qui quidem laboriosam, reiciendis cupiditate dicta quia voluptate pariatur. Commodi rerum ad neque quas aperiam?"
-        ]);
-
-        Post::create([
-            "user_id"=>$user->id,
-            "category_id"=>$work->id,
-            "title"=>"My Work Post",
-            "slug"=>"my-work-post",
-            "excerpt"=>"Lorem ipsum dolor sit amet",
-            "body"=>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel voluptatibus commodi nisi labore, soluta neque. Qui quidem laboriosam, reiciendis cupiditate dicta quia voluptate pariatur. Commodi rerum ad neque quas aperiam?"
-        ]);
-
-        Post::create([
-            "user_id"=>$user->id,
-            "category_id"=>$hobbies->id,
-            "title"=>"My Hobbies Post",
-            "slug"=>"my-hobbies-post",
-            "excerpt"=>"Lorem ipsum dolor sit amet",
-            "body"=>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel voluptatibus commodi nisi labore, soluta neque. Qui quidem laboriosam, reiciendis cupiditate dicta quia voluptate pariatur. Commodi rerum ad neque quas aperiam?"
+        Post::factory(5)->create([
+            "user_id" => $user3->id,
+            "category_id" => $category3->id
         ]);
     }
 }
