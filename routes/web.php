@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\File;
 */
 
 Route::get('/', function () {
-    $posts = Post::all(); //Gets all the posts
+    $posts = Post::latest()->with("category", "user")->get(); //Gets all the posts with a category assigned and sorts them according to their timestamp
     return view('posts', ["posts" => $posts]); //Sends the $posts to the rendered page
 });
 
@@ -30,4 +31,8 @@ Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $
 
 Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', ['posts' => $category->posts]);
+});
+
+Route::get('users/{user:username}', function (User $user) {
+    return view('posts', ['posts' => $user->posts]);
 });

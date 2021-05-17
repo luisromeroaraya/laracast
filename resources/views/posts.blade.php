@@ -3,7 +3,7 @@
         <article>
             <a href="/posts/{{$post->slug}}"><h2>{{$post->title}}</h2></a>
             <p>
-                Created by: <a href="/users/{{$post->user->id}}">{{$post->user->name}}</a><br> 
+                Created by: <a href="/users/{{$post->user->username}}">{{$post->user->name}}</a><br> 
                 Date: {{$post->created_at}}<br>
                 Category: <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
             </p>
