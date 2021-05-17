@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //This will create an Eloquent relationship to create $post->category
+    public function posts() {
+        return $this->hasMany(Post::class);
+    }
 }
