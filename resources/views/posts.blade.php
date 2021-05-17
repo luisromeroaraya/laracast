@@ -1,7 +1,7 @@
 <x-layout> <!-- Defines the $slot in the layout file -->
         @foreach ($posts as $post)
         <article>
-            <a href="/posts/{{$post->id}}"><h2>{{$post->title}}</h2></a>
+            <a href="/posts/{{$post->slug}}"><h2>{{$post->title}}</h2></a>
             <h3>{{$post->date}}</h3>
             <div>
                 <p>{{$post->excerpt}}</p>

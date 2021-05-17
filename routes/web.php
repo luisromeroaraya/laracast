@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('posts', ["posts" => $posts]); //Sends the $posts to the rendered page
 });
 
-Route::get('posts/{id}', function ($id) { //Find a post by its name $n and pass it to a view called "post"
-    $post = Post::findOrFail($id); //We created a Class named Post with the method find($n) in it (check folder app/models)
+Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
+    //$post = Post::findOrFail($id); //We created a Class named Post with the method find($n) in it (check folder app/models)
     return view('post', ['post' => $post]); //Sends the $post to rendered page
 });//->where("n", "[A-z_\-]+"); //You can also use whereAlpha, whereAlphaNumeric, whereNumber
