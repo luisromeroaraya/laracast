@@ -21,18 +21,21 @@ use Illuminate\Support\Facades\File;
 
 Route::get('/', function () {
     $posts = Post::latest()->get(); //Gets all the posts with a category assigned and sorts them according to their timestamp
-    return view('posts', ["posts" => $posts]); //Sends the $posts to the rendered page
-});
+    $categories = Category::all(); //Gets all the categories
+    return view('posts', ["posts" => $posts, "categories" => $categories]); //Sends the $posts to the rendered page
+})->name('home');
 
 Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
     //$post = Post::findOrFail($id); //We created a Class named Post with the method find($n) in it (check folder app/models)
     return view('post', ['post' => $post]); //Sends the $post to rendered page
-});//->where("n", "[A-z_\-]+"); //You can also use whereAlpha, whereAlphaNumeric, whereNumber
+})->name('post');//->where("n", "[A-z_\-]+"); //You can also use whereAlpha, whereAlphaNumeric, whereNumber
 
 Route::get('categories/{category:slug}', function (Category $category) {
-    return view('posts', ['posts' => $category->posts]);
-});
+    $categories = Category::all(); //Gets all the categories
+    return view('posts', ['posts' => $category->posts, "categories" => $categories, "currentCategory" => $category]);
+})->name('category');
 
 Route::get('users/{user:username}', function (User $user) {
-    return view('posts', ['posts' => $user->posts]);
-});
+    $categories = Category::all(); //Gets all the categories
+    return view('posts', ['posts' => $user->posts, "categories" => $categories]);
+})->name('user');
