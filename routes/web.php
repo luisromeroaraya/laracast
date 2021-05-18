@@ -20,9 +20,12 @@ use Illuminate\Support\Facades\File;
 */
 
 Route::get('/', function () {
-    $posts = Post::latest()->get(); //Gets all the posts with a category assigned and sorts them according to their timestamp
+    $posts = Post::latest();
+    if (request('search')) {
+        $posts->where('title', 'like', '%' . request('search') . '%')->orWhere('body', 'like', '%' . request('search') . '%');
+    }
     $categories = Category::all(); //Gets all the categories
-    return view('posts', ["posts" => $posts, "categories" => $categories]); //Sends the $posts to the rendered page
+    return view('posts', ["posts" => $posts->get(), "categories" => $categories]); //Sends the $posts to the rendered page
 })->name('home');
 
 Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
