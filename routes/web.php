@@ -23,6 +23,6 @@ Route::get('/', [PostController::class, "index"])->name('home');
 
 Route::get('posts/{post:slug}', [PostController::class, "post"])->name('post');//->where("n", "[A-z_\-]+"); //You can also use whereAlpha, whereAlphaNumeric, whereNumber
 
-Route::get('categories/{category:slug}', [PostController::class, "category"])->name('category');
+// Route::get('categories/{category:slug}', [PostController::class, "category"])->name('category');
 
 Route::get('users/{user:username}', [PostController::class, "user"])->name('user');

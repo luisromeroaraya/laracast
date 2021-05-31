@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::latest()->filter(request(['search'])); //Filters the posts with the function scopeFilter($query) in Post.php
+        $posts = Post::latest()->filter(request(['search', 'category'])); //Filters the posts with the function scopeFilter($query) in Post.php
         $categories = Category::all(); //Gets all the categories
-        return view('posts', ["posts" => $posts->get(), "categories" => $categories]); //Sends the $posts to the rendered page
+        return view('posts', ['posts' => $posts->get(), 'categories' => $categories, 'currentCategory' => Category::firstWhere('slug', request('category'))]); //Sends the $posts to the rendered page
     }
 
     public function post(Post $post) {
@@ -19,13 +19,13 @@ class PostController extends Controller
         return view('post', ['post' => $post]); //Sends the $post to rendered page
     }
 
-    public function category(Category $category) {
-        $categories = Category::all(); //Gets all the categories
-        return view('posts', ['posts' => $category->posts, "categories" => $categories, "currentCategory" => $category]);
-    }
+    // public function category(Category $category) {
+    //     $categories = Category::all(); //Gets all the categories
+    //     return view('posts', ['posts' => $category->posts, 'categories' => $categories, 'currentCategory' => $category]);
+    // }
 
     public function user(Category $category) {
         $categories = Category::all(); //Gets all the categories
-        return view('posts', ['posts' => $user->posts, "categories" => $categories]);
+        return view('posts', ['posts' => $user->posts, 'categories' => $categories]);
     }
 }
