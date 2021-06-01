@@ -28,17 +28,17 @@ class DatabaseSeeder extends Seeder
         $category2 = Category::factory()->create();
         $category3 = Category::factory()->create();
 
-        Post::factory(5)->create([
+        Post::factory(20)->create([
             "user_id" => $user1->id,
             "category_id" => $category1->id
         ]);
            
-        Post::factory(5)->create([
+        Post::factory(25)->create([
             "user_id" => $user2->id,
             "category_id" => $category2->id
         ]);
 
-        Post::factory(5)->create([
+        Post::factory(30)->create([
             "user_id" => $user3->id,
             "category_id" => $category3->id
         ]);

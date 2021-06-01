@@ -11,7 +11,8 @@ class PostController extends Controller
 {
     public function index() {
         $posts = Post::latest()->filter(request(['search', 'category', 'user'])); //Filters the posts with the function scopeFilter($query) in Post.php
-        return view('posts.index', ['posts' => $posts->get()]); //Sends the $posts to the rendered page
+        return view('posts.index', ['posts' => $posts->paginate(15)->withQueryString()]); //Sends the $posts to the rendered page
+                                                                        //With paginate we are adding pagination to our request response. We must include withQueryString or else it will lose the query filters
     }
 
     public function show(Post $post) {
