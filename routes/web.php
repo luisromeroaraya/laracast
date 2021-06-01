@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Models\Post;
-use App\Models\Category;
-use App\Models\User;
+// use App\Models\Post;
+// use App\Models\Category;
+// use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\File;
+// use Illuminate\Support\Facades\File;
 
 
 /*
@@ -21,8 +21,8 @@ use Illuminate\Support\Facades\File;
 
 Route::get('/', [PostController::class, "index"])->name('home');
 
-Route::get('posts/{post:slug}', [PostController::class, "post"])->name('post');//->where("n", "[A-z_\-]+"); //You can also use whereAlpha, whereAlphaNumeric, whereNumber
+Route::get('posts/{post:slug}', [PostController::class, "show"])->name('post');//->where("n", "[A-z_\-]+"); //You can also use whereAlpha, whereAlphaNumeric, whereNumber
 
 // Route::get('categories/{category:slug}', [PostController::class, "category"])->name('category');
 
-Route::get('user/{user:username}', [PostController::class, "user"])->name('user');
+// Route::get('user/{user:username}', [PostController::class, "user"])->name('user');

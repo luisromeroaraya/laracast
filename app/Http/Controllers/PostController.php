@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\Category;
-use App\Models\User;
-use Illuminate\Http\Request;
+// use App\Models\Category;
+// use App\Models\User;
+// use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::latest()->filter(request(['search', 'category'])); //Filters the posts with the function scopeFilter($query) in Post.php
+        $posts = Post::latest()->filter(request(['search', 'category', 'user'])); //Filters the posts with the function scopeFilter($query) in Post.php
         return view('posts.index', ['posts' => $posts->get()]); //Sends the $posts to the rendered page
     }
 
@@ -24,7 +24,7 @@ class PostController extends Controller
     //     return view('posts', ['posts' => $category->posts, 'categories' => $categories, 'currentCategory' => $category]);
     // }
 
-    public function user(User $user) {
-        return view('posts.user', ['posts' => $user->posts]);
-    }
+    // public function user(User $user) {
+    //     return view('posts.index', ['posts' => $user->posts]);
+    // }
 }
