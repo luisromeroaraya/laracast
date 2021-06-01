@@ -28,9 +28,10 @@ class Post extends Model
         //     $query->where('title', 'like', '%' . request('search') . '%')->orWhere('body', 'like', '%' . request('search') . '%');
         // }
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            $query
-                ->where('title', 'like', '%' . $search . '%')
+            $query->where( function($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
                 ->orWhere('body', 'like', '%' . $search . '%');
+            });
         });
         $query->when($filters['category'] ?? false, function ($query, $category) {
             $query->whereHas('category', function ($query) use ($category) {
