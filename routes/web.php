@@ -25,4 +25,4 @@ Route::get('posts/{post:slug}', [PostController::class, "post"])->name('post');/
 
 // Route::get('categories/{category:slug}', [PostController::class, "category"])->name('category');
 
-Route::get('users/{user:username}', [PostController::class, "user"])->name('user');
+Route::get('user/{user:username}', [PostController::class, "user"])->name('user');
